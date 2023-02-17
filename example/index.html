@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Image Editor</title>
+    <style>
+      *,
+      :after,
+      :before {
+        box-sizing: border-box;
+        padding: 0;
+        margin: 0;
+      }
+      .ct {
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+      }
+      .canvas {
+        border: 1px dashed #aaa;
+        border-radius: 5px;
+      }
+      .controls {
+        margin-top: 8px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="ct">
+      <canvas class="canvas" width="500" height="500"></canvas>
+      <div class="controls">
+        <button class="x+">x+10</button>
+        <button class="x-">x-10</button>
+        <button class="y+">y+10</button>
+        <button class="y-">y-10</button>
+        <button class="r+">rotate+20</button>
+        <button class="r-">rotate-20</button>
+        <button class="s+">scale+0.1</button>
+        <button class="s-">scale-0.1</button>
+      </div>
+    </div>
+    <script src="/dist/index.umd.js"></script>
+    <script>
+      const controls = document.querySelector(".controls");
+      const canvas = document.querySelector(".canvas");
+      let imageEditor = null;
+      controls.addEventListener("click", (e) => {
+        if (e.target.tagName.toLowerCase() === "button") {
+          const position = imageEditor.getPosition();
+          const rotate = imageEditor.getRotate();
+          const scale = imageEditor.getScale();
+          switch (e.target.classList[0]) {
+            case "x+":
+              imageEditor.move(position.x + 10, position.y);
+              break
+            case "x-":
+              imageEditor.move(position.x - 10, position.y);
+              break
+            case "y+":
+              imageEditor.move(position.x, position.y + 10);
+              break
+            case "y-":
+              imageEditor.move(position.x, position.y - 10);
+              break
+            case "r+":
+              imageEditor.rotate(rotate + 20);
+              break
+            case "r-":
+              imageEditor.rotate(rotate - 20);
+              break
+            case "s+":
+              imageEditor.pinch(scale + 0.1);
+              break
+            case "s-":
+              imageEditor.pinch(scale - 0.1);
+              break
+          }
+        }
+      });
+      const image = new Image();
+      image.onload = () => (imageEditor = new iivu.ImageEditor(canvas, image));
+      image.src = "/example/test_image.jpg";
+    </script>
+  </body>
+</html>
