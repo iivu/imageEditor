@@ -1,6 +1,7 @@
 export type ImageEditorConfig = {
   backgroundColor?: string;
 };
+export type EditInfo = { x: number; y: number; scale: number; rotate: 0 };
 
 export class ImageEditor {
   private canvas: HTMLCanvasElement | null;
@@ -8,7 +9,7 @@ export class ImageEditor {
   private ctx: CanvasRenderingContext2D | null;
   private width = 0;
   private height = 0;
-  private editInfo = { x: 0, y: 0, scale: 1, rotate: 0 };
+  private editInfo: EditInfo = { x: 0, y: 0, scale: 1, rotate: 0 };
   private config: ImageEditorConfig = {};
 
   constructor(canvas: HTMLCanvasElement, image: HTMLImageElement, config: ImageEditorConfig = {}) {
@@ -57,6 +58,10 @@ export class ImageEditor {
   rotate(r: number) {
     this.editInfo.rotate = r;
     this.update();
+  }
+
+  getEditInfo() {
+    return this.editInfo;
   }
 
   getRotate() {
