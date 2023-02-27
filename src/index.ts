@@ -1,7 +1,7 @@
 export type ImageEditorConfig = {
   backgroundColor?: string;
 };
-export type EditInfo = { x: number; y: number; scale: number; rotate: 0 };
+export type EditInfo = { x: number; y: number; scale: number; rotate: number };
 
 export class ImageEditor {
   private canvas: HTMLCanvasElement | null;
