@@ -40,7 +40,7 @@ export class ImageEditor {
     const imageRatio = this.image.width / this.image.height;
     const imageDrawWidth = Math.min(this.height * imageRatio, this.width);
     const imageDrawHeight = imageDrawWidth / imageRatio;
-    this.ctx.drawImage(this.image, -this.width / 2, -this.height / 2, imageDrawWidth, imageDrawHeight);
+    this.ctx.drawImage(this.image, -imageDrawWidth / 2,-imageDrawHeight / 2, imageDrawWidth, imageDrawHeight);
     this.ctx.restore();
   }
 

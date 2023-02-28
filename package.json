@@ -1,6 +1,6 @@
 {
   "name": "@iivu/imageeditor",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Simple image editor, base on canvas / es6.",
   "type": "module",
   "main": "dist/index.cjs.js",
