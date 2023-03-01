@@ -27,12 +27,11 @@ export class ImageEditor {
   update() {
     if (this.ctx === null || this.image == null) return;
     this.ctx.clearRect(0, 0, this.width, this.height);
-    this.ctx.save();
     if (this.config.backgroundColor) {
       this.ctx.fillStyle = this.config.backgroundColor;
       this.ctx.fillRect(0, 0, this.width, this.height);
-      this.ctx.restore();
     }
+    this.ctx.save();
     // 画布原点设置在canvas中心
     this.ctx.transform(this.editInfo.scale, 0, 0, this.editInfo.scale, this.editInfo.x, this.editInfo.y);
     this.ctx.rotate((this.editInfo.rotate * Math.PI) / 180);
